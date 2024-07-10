@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Admin Dashboard</h1>
+    <ul class="dashboard-links">
+        <li><a href="{% url 'create_staff' %}">Create Staff</a></li>
+        <li><a href="{% url 'view_purchases' %}">View Purchases</a></li>
+        <li><a href="{% url 'create_post' %}">Create Post</a></li>
+        <li><a href="{% url 'create_merch' %}">Create Merchandise</a></li>
+        <li><a href="{% url 'create_event' %}">Create Event</a></li>
+        <li><a href="{% url 'track_staff' %}">Track Staff</a></li>
+    </ul>
+    <a href="{% url 'logout' %}" class="styled-link">Logout</a>
+</div>
+{% endblock %}

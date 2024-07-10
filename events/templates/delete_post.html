@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Confirm Delete{% endblock %}
+{% block content %}
+<div class="confirm-message">
+    <p>Are you sure you want to delete the post titled "{{ post.title }}"?</p>
+    <div class="buttons">
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="delete-button">Yes, Delete</button>
+        </form>
+        <a href="{% url 'gallery' %}" class="cancel-button">Cancel</a>
+    </div>
+</div>
+{% endblock %}

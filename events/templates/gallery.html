@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Gallery{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="my-4">Gallery</h1>
+    {% if request.user.is_staff %}
+        <button class="add-new-button" onclick="location.href='{% url 'create_post' %}'">+ Add New Post</button>
+    {% endif %}
+    <div class="gallery-grid">
+        {% for post in posts %}
+        <div class="card">
+            <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <p class="card-text">{{ post.description }}</p>
+                {% if request.user.is_staff %}
+                    <form action="{% url 'delete_post' post.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger mt-2">Delete</button>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

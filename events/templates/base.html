@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Car Event Management System{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="header">
+        <div class="user-image-container">
+            <div class="user-image" onclick="location.href='{% if user.is_authenticated %}{% url 'dashboard_redirect' %}{% else %}{% url 'login' %}{% endif %}';">
+                <img src="{% static 'events/user.png' %}" alt="User Image">
+            </div>
+        </div>
+        <h1>Car Club Name</h1>
+        <h3>Beyond Enthusiast</h3>
+    </div>
+    <div class="navbar">
+        <div class="navbar-left">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'event' %}">Event</a>
+            <a href="{% url 'merch' %}">Merch</a>
+            <a href="{% url 'gallery' %}">Gallery</a>
+        </div>
+        <div class="navbar-right">
+            <div class="wishlist-image" onclick="location.href='{% url 'wishlist' %}';">
+                <img src="{% static 'events/wishlist.png' %}" alt="Wishlist">
+            </div>
+            <div class="cart-image" onclick="location.href='{% url 'cart' %}';">
+                <img src="{% static 'events/cart.png' %}" alt="Cart">
+            </div>
+        </div>
+    </div>
+    <div class="background">
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+    <script>
+        function togglePassword() {
+            var passwordField = document.getElementById("password");
+            var passwordFieldType = passwordField.getAttribute("type");
+            if (passwordFieldType === "password") {
+                passwordField.setAttribute("type", "text");
+            } else {
+                passwordField.setAttribute("type", "password");
+            }
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            var togglePasswordElements = document.getElementsByClassName("toggle-password");
+            Array.prototype.forEach.call(togglePasswordElements, function(el) {
+                el.addEventListener("click", togglePassword);
+            });
+        });
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Event{% endblock %}
+{% block content %}
+<div class="event-container">
+    <h2>Retro Havoc Car Event</h2>
+    <img src="{% static 'events/retro_havoc_poster.jpg' %}" alt="Retro Havoc Poster" class="event-poster">
+    <div class="event-description">
+        <p>Join us for an unforgettable car event where enthusiasts from all over come together to celebrate their passion for cars.</p>
+    </div>
+    <div class="buttons">
+        {% if user.is_authenticated %}
+            <a href="{% url 'participate_event' event_id=1 %}" class="button participate-btn">Participate in Event</a>
+            <a href="{% url 'purchase_event_ticket' event_id=1 %}" class="button participate-btn">Purchase Ticket</a>
+        {% else %}
+            <a href="{% url 'login' %}?next={% url 'participate_event' event_id=1 %}" class="button participate-btn">Participate in Event</a>
+            <a href="{% url 'login' %}?next={% url 'purchase_event_ticket' event_id=1 %}" class="button participate-btn">Join Event</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

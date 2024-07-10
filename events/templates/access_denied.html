@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Access Denied{% endblock %}
+{% block content %}
+<h2>Oops! seems like there's stranger..</h2> 
+<h3>Please log-in or sign-up first to let us know who you are!</h3>
+<p>{{ message }}</p>
+<class="dashboard-link">
+<a href="{% url 'login' %}">Log In</a> or <a href="{% url 'signup' %}">Sign Up</a>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}All Purchases{% endblock %}
+{% block content %}
+<div class="purchases-container">
+    <h2>All Purchases</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Item/Event</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+                <th>Receipt</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for purchase in purchases %}
+            <tr>
+                <td>{{ purchase.user.username }}</td>
+                <td>{{ purchase.quantity }}</td>
+                <td>${{ purchase.total_price }}</td>
+                <td><a href="{{ purchase.receipt.url }}" class="btn btn-info">View Receipt</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
+</div>
+{% endblock %}

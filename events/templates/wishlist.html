@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Wishlist{% endblock %}
+{% block content %}
+<h2>My Wishlist</h2>
+{% for product in wishlist_items %}
+    <div class="product-item">
+        <img src="{{ product.product.image.url }}" alt="{{ product.product.name }}" class="product-image">
+        <div class="product-info">
+            <h3>{{ product.product.name }}</h3>
+            <p>{{ product.product.description }}</p>
+            <p>${{ product.price }}</p>
+        </div>
+        <div class="action-buttons">
+            <a href="{% url 'add_to_cart' product.product.id %}" class="add-to-cart-btn">Add to Cart</a>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}

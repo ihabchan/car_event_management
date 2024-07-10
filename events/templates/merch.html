@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Merchandise{% endblock %}
+{% block content %}
+<div class="merch-container">
+    <h2>Our Merchandise</h2>
+    {% if user.is_authenticated %}
+        {% if user.is_staff or user.is_superuser %}
+            <div class="add-new-button">
+                <a href="{% url 'create_merch' %}" class="btn btn-success">Add New Merch</a>
+            </div>
+        {% endif %}
+    {% endif %}
+    
+    <div class="product-grid">
+        {% for product in products %}
+        <div class="product-item">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+            <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                <p>{{ product.description }}</p>
+                <p>${{ product.price }}</p>
+            </div>
+            <div class="action-buttons">
+                {% if user.is_authenticated %}
+                    {% if user.is_staff or user.is_superuser %}
+                        <a href="{% url 'update_merch' product.id %}" class="btn btn-primary update-btn">Update</a>
+                        <form action="{% url 'delete_merch' product.id %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    {% else %}
+                        <a href="{% url 'add_to_wishlist' product.id %}" class="wishlist-btn">Add to Wishlist</a>
+                        <a href="{% url 'add_to_cart' product.id %}" class="add-to-cart-btn">Add to Cart</a>
+                    {% endif %}
+                {% else %}
+                    <p><a href="{% url 'login' %}">Log in</a> to add to wishlist or cart</p>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}User Dashboard{% endblock %}
+{% block content %}
+<h2>Welcome to your Dashboard</h2>
+<p>Manage your account and activities here.</p>
+<nav>
+    <ul class="dashboard-links">
+        <li><a href="{% url 'wishlist' %}">Wishlist</a></li>
+        <li><a href="{% url 'cart' %}">Cart</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+    </ul>
+</nav>
+
+{% endblock %}

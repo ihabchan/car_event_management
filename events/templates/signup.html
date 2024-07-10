@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Sign Up{% endblock %}
+{% block content %}
+<div class="signup-box">
+    <h2>Sign Up</h2>
+    <p>Welcome to the club!</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div>
+            {{ form.username.errors }}
+            <input type="text" name="username" placeholder="Username" required>
+        </div>
+        <div>
+            {{ form.email.errors }}
+            <input type="email" name="email" placeholder="Email" required>
+        </div>
+        <div style="position: relative;">
+            {{ form.password1.errors }}
+            <input type="password" id="password" name="password1" placeholder="Password" required>
+            <span class="toggle-password" onclick="togglePassword()">👁️</span>
+        </div>
+        <div>
+            {{ form.password2.errors }}
+            <input type="password" name="password2" placeholder="Confirm Password" required>
+        </div>
+        <button type="submit">Sign Up</button>
+        <p>Already Have An Account?</p> <a class="forgot-password" href="{% url 'login' %}">Log In!</a>
+    </form>
+</div>
+{% if messages %}
+<div id="popup-notification" class="popup">
+    {% for message in messages %}
+    <p>{{ message }}</p>
+    {% endfor %}
+</div>
+<script>
+    setTimeout(function() {
+        document.getElementById('popup-notification').style.display = 'none';
+    }, 5000);
+</script>
+{% endif %}
+{% endblock %}

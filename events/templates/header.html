@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Car Event Management System{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="header">
+        <div class="user-image-container">
+            <div class="user-image" onclick="location.href='{% url 'login' %}';">
+                <img src="{% static 'user.jpg' %}" alt="User Image">
+            </div>
+        </div>
+        <h1>Car Club Name</h1>
+        <p>Beyond Enthusiast</p>
+    </div>
+    <div class="navbar">
+        <div class="navbar-left">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'event' %}">Event</a>
+            <a href="{% url 'merch' %}">Merch</a>
+            <a href="{% url 'gallery' %}">Gallery</a>
+        </div>
+        <div class="navbar-right">
+            <div class="wishlist-image" onclick="location.href='{% url 'wishlist' %}';">
+                <img src="{% static 'wishlist-light.png' %}" alt="Wishlist">
+            </div>
+            <div class="cart-image" onclick="location.href='{% url 'cart' %}';">
+                <img src="{% static 'cart-light.png' %}" alt="Cart">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

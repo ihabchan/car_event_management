@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Cart{% endblock %}
+{% block content %}
+<h2>My Cart</h2>
+{% for product in cart_items %}
+    <div class="product-item">
+        <img src="{{ product.product.image.url }}" alt="{{ product.product.name }}" class="product-image">
+        <div class="product-info">
+            <h3>{{ product.product.name }}</h3>
+            <p>{{ product.product.description }}</p>
+            <p>${{ product.price }}</p>
+        </div>
+        <div class="action-buttons">
+            <form action="{% url 'remove_from_cart' product.product.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="remove-from-cart-btn">Remove</button>
+            </form>
+        </div>
+    </div>
+{% endfor %}
+<a href="{% url 'checkout' %}" class="checkout-btn">Checkout</a>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Add Merchandise{% endblock %}
+{% block content %}
+<div class="form-container">
+    <h2>Add Merchandise</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Merchandise</button>
+    </form>
+    <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
+</div>
+{% endblock %}
